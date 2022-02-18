@@ -1,0 +1,134 @@
+<?xml version="1.0" ?>
+<!DOCTYPE plans SYSTEM "http://www.matsim.org/files/dtd/plans_v4.dtd">
+<plans>
+
+	<person id="1">
+		<plan>
+			<act type="h" x="-200" y="0" end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0" dur="00:05" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0" />
+		</plan>
+	</person>
+
+	<person id="2">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="0" dur="00:10" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="3">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="4">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="0" dur="00:10" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="5">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="6">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="7">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="0" dur="00:10" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="8">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="9">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="0" dur="00:10" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0"  />
+		</plan>
+	</person>
+
+	<person id="10">
+		<plan>
+			<act type="h" x="-200" y="0"  end_time="06:00" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="4000" y="0"  dur="00:02" />
+			<leg mode="pt"> </leg>
+			<act type="w" x="2000" y="1000"  dur="00:03" />
+			<leg mode="pt"> </leg>
+			<act type="h" x="-200" y="0" link="1" />
+		</plan>
+	</person>
+
+
+</plans>

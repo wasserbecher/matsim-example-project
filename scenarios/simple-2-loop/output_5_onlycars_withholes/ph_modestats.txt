@@ -1,0 +1,12 @@
+Iteration	car_travel	car_wait	stageActivity_travel	stageActivity_wait
+0	60	0	0	0
+1	51	0	0	0
+2	43	0	0	0
+3	43	0	0	0
+4	37	0	0	0
+5	32	0	0	0
+6	32	0	0	0
+7	33	0	0	0
+8	33	0	0	0
+9	33	0	0	0
+10	33	0	0	0

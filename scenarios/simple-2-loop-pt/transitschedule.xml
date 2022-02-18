@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE transitSchedule SYSTEM "http://www.matsim.org/files/dtd/transitSchedule_v1.dtd">
+<transitSchedule>
+<transitStops>
+<stopFacility id="9999" x="-200" y="0" linkRefId="1" isBlocking="true"/>
+<stopFacility id="1" x="2000" y="0" linkRefId="4" isBlocking="true"/>
+<stopFacility id="2" x="4000" y="0" linkRefId="5" isBlocking="true"/>
+<stopFacility id="3" x="4000" y="1000" linkRefId="8" isBlocking="true"/>
+<stopFacility id="4" x="2000" y="1000" linkRefId="9" isBlocking="true"/>
+  <stopFacility id="5" x="3000" y="-200" linkRefId="11" isBlocking="true"/>
+  <stopFacility id="6" x="3000" y="1200" linkRefId="13" isBlocking="true"/>
+</transitStops>
+
+<transitLine id="line1">
+  <transitRoute id="line1">
+    <transportMode>pt</transportMode>
+    <routeProfile>
+      <stop refId="9999" departureOffset="00:00:00"/>
+      <stop refId="1" departureOffset="00:12:00" arrivalOffset="00:10:00" awaitDeparture="true"/>
+      <stop refId="2" departureOffset="00:22:00" arrivalOffset="00:20:00" awaitDeparture="true"/>
+      <stop refId="3" departureOffset="00:32:00" arrivalOffset="00:30:00" awaitDeparture="true"/>
+      <stop refId="4" departureOffset="00:42:30" arrivalOffset="00:40:00" awaitDeparture="true"/>
+    </routeProfile>
+    <route>
+      <link refId="1"/>
+      <link refId="3"/>
+      <link refId="4"/>
+      <link refId="5"/>
+      <link refId="6"/>
+      <link refId="7"/>
+      <link refId="8"/>
+      <link refId="9"/>
+      <link refId="10"/>
+      <link refId="2"/>
+    </route>
+    <departures>
+      <departure id="1" departureTime="06:00:00" vehicleRefId="1000"/>
+      <departure id="2" departureTime="06:10:00" vehicleRefId="1001"/>
+      <departure id="3" departureTime="06:20:00" vehicleRefId="1002"/>
+      <departure id="4" departureTime="06:30:00" vehicleRefId="1003"/>
+      <departure id="5" departureTime="06:40:00" vehicleRefId="1004"/>
+      <departure id="6" departureTime="06:50:00" vehicleRefId="1005"/>
+      <departure id="7" departureTime="07:00:00" vehicleRefId="1006"/>
+      <departure id="8" departureTime="07:15:00" vehicleRefId="1007"/>
+      <departure id="9" departureTime="07:23:00" vehicleRefId="1008"/>
+      <departure id="10" departureTime="07:25:00" vehicleRefId="1009"/>
+      <departure id="11" departureTime="07:30:00" vehicleRefId="1010"/>
+    </departures>
+  </transitRoute>
+</transitLine>
+
+<transitLine id="line2">
+  <transitRoute id="line2">
+    <transportMode>pt</transportMode>
+    <routeProfile>
+      <stop refId="9999" departureOffset="00:00:00"/>
+      <!--<stop refId="1" departureOffset="00:05:00" awaitDeparture="true"/>-->
+      <stop refId="2" departureOffset="00:10:00" awaitDeparture="true"/>
+      <!--<stop refId="3" departureOffset="00:15:00" awaitDeparture="true"/>-->
+      <stop refId="4" departureOffset="00:20:00" awaitDeparture="true"/>
+    </routeProfile>
+    <route>
+      <link refId="1"/>
+      <link refId="3"/>
+      <link refId="11"/>
+      <link refId="12"/>
+      <link refId="5"/>
+      <link refId="6"/>
+      <link refId="7"/>
+      <link refId="13"/>
+      <link refId="14"/>
+      <link refId="9"/>
+      <link refId="10"/>
+      <link refId="2"/>
+    </route>
+    <departures>
+      <departure id="1" departureTime="06:00:00" vehicleRefId="2000"/>
+      <departure id="2" departureTime="06:10:00" vehicleRefId="2001"/>
+      <departure id="3" departureTime="06:20:00" vehicleRefId="2002"/>
+      <departure id="4" departureTime="06:30:00" vehicleRefId="2003"/>
+      <departure id="5" departureTime="06:40:00" vehicleRefId="2004"/>
+      <departure id="6" departureTime="06:50:00" vehicleRefId="2005"/>
+      <departure id="7" departureTime="07:00:00" vehicleRefId="2006"/>
+      <departure id="8" departureTime="07:15:00" vehicleRefId="2007"/>
+      <departure id="9" departureTime="07:23:00" vehicleRefId="2008"/>
+      <departure id="10" departureTime="07:25:00" vehicleRefId="2009"/>
+      <departure id="11" departureTime="07:30:00" vehicleRefId="2010"/>
+    </departures>
+  </transitRoute>
+</transitLine>
+
+</transitSchedule>

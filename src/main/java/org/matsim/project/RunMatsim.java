@@ -23,7 +23,9 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.api.core.v01.network.NetworkFactory;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
+import org.matsim.core.api.internal.MatsimFactory;
 import org.matsim.core.config.Config;
 import org.matsim.core.config.ConfigUtils;
 import org.matsim.core.config.groups.PlanCalcScoreConfigGroup;
@@ -36,12 +38,18 @@ import org.matsim.core.config.groups.StrategyConfigGroup;
 import org.matsim.core.controler.Controler;
 import org.matsim.core.controler.OutputDirectoryHierarchy;
 import org.matsim.core.controler.OutputDirectoryHierarchy.OverwriteFileSetting;
+import org.matsim.core.population.routes.LinkNetworkRouteFactory;
+import org.matsim.core.population.routes.NetworkRoute;
+import org.matsim.core.population.routes.RouteFactory;
 import org.matsim.core.replanning.strategies.DefaultPlanStrategiesModule;
 import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.core.utils.collections.CollectionUtils;
+import org.matsim.pt.transitSchedule.TransitScheduleFactoryImpl;
+import org.matsim.pt.transitSchedule.TransitScheduleImpl;
 import org.matsim.vehicles.VehicleType;
 import org.matsim.vehicles.VehicleUtils;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
+import org.matsim.pt.transitSchedule.api.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -56,13 +64,22 @@ public class RunMatsim{
 	public static void main(String[] args) {
 
 		Config config;
+		/*
 		if ( args==null || args.length==0 || args[0]==null ){
 			config = ConfigUtils.loadConfig( "scenarios/equil/config.xml" );
 		} else {
 			config = ConfigUtils.loadConfig( args );
 		}
+		*/
+
+		String working_directory = "scenarios/simple-2-loop-pt";
+
+		String config_directory = working_directory + "/config.xml";
+
+		config = ConfigUtils.loadConfig(config_directory);
 
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
+		config.controler().setOutputDirectory(working_directory + "/output_2");
 
 		// possibly modify config here
 
@@ -72,18 +89,24 @@ public class RunMatsim{
 
 		// possibly modify scenario here
 		
-		// ---
+		TransitSchedule ts = scenario.getTransitSchedule();
 		
 		Controler controler = new Controler( scenario ) ;
 		
 		// possibly modify controler here
 
-//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
+		//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
 
-		
-		// ---
-		
 		controler.run();
 	}
+	/*
+	public TransitLine generate_new_train_line(TransitSchedule ts){
+		// first define the networkroute of the new line
+		LinkNetworkRouteFactory lnrf = new LinkNetworkRouteFactory();
+		//NetworkRoute nr  = lnrf.createRoute(new ID<Link>("1"),"2");
+		return ts;
+	}
+	*/
+
 	
 }
