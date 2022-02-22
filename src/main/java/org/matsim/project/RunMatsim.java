@@ -23,6 +23,7 @@ import org.matsim.api.core.v01.Id;
 import org.matsim.api.core.v01.Scenario;
 import org.matsim.api.core.v01.TransportMode;
 import org.matsim.api.core.v01.network.Link;
+import org.matsim.api.core.v01.network.Network;
 import org.matsim.api.core.v01.network.NetworkFactory;
 import org.matsim.contrib.otfvis.OTFVisLiveModule;
 import org.matsim.core.api.internal.MatsimFactory;
@@ -46,8 +47,7 @@ import org.matsim.core.scenario.ScenarioUtils;
 import org.matsim.core.utils.collections.CollectionUtils;
 import org.matsim.pt.transitSchedule.TransitScheduleFactoryImpl;
 import org.matsim.pt.transitSchedule.TransitScheduleImpl;
-import org.matsim.vehicles.VehicleType;
-import org.matsim.vehicles.VehicleUtils;
+import org.matsim.vehicles.*;
 import org.matsim.vis.otfvis.OTFVisConfigGroup;
 import org.matsim.pt.transitSchedule.api.*;
 
@@ -79,7 +79,7 @@ public class RunMatsim{
 		config = ConfigUtils.loadConfig(config_directory);
 
 		config.controler().setOverwriteFileSetting( OverwriteFileSetting.deleteDirectoryIfExists );
-		config.controler().setOutputDirectory(working_directory + "/output_2");
+		config.controler().setOutputDirectory(working_directory + "/output_newLine_changedTS");
 
 		// possibly modify config here
 
@@ -89,24 +89,78 @@ public class RunMatsim{
 
 		// possibly modify scenario here
 		
-		TransitSchedule ts = scenario.getTransitSchedule();
-		
 		Controler controler = new Controler( scenario ) ;
 		
 		// possibly modify controler here
 
-		//		controler.addOverridingModule( new OTFVisLiveModule() ) ;
+		//controler.addOverridingModule( new OTFVisLiveModule() ) ;
 
+		createNewTrainVehicles(scenario);
+		generate_new_train_line(scenario);
 		controler.run();
 	}
-	/*
-	public TransitLine generate_new_train_line(TransitSchedule ts){
-		// first define the networkroute of the new line
-		LinkNetworkRouteFactory lnrf = new LinkNetworkRouteFactory();
-		//NetworkRoute nr  = lnrf.createRoute(new ID<Link>("1"),"2");
-		return ts;
-	}
-	*/
 
+	public static void generate_new_train_line(Scenario sc){
+		// fetch current transit schedule
+
+		TransitSchedule schedule = sc.getTransitSchedule();
+		TransitScheduleFactory builder = schedule.getFactory();
+
+		// create stop facilities for new line
+		TransitStopFacility tsf1 = schedule.getFacilities().get(Id.get("9999", TransitStopFacility.class));
+		TransitStopFacility tsf2 = schedule.getFacilities().get(Id.get("5", TransitStopFacility.class));
+		TransitStopFacility tsf3 = schedule.getFacilities().get(Id.get("6", TransitStopFacility.class));
+
+		TransitRouteStop trs1 = builder.createTransitRouteStop(tsf1, 0, 0);
+		//trs1.setAwaitDepartureTime(true);
+		TransitRouteStop trs2 = builder.createTransitRouteStop(tsf2, 720, 840);
+		trs2.setAwaitDepartureTime(true);
+		TransitRouteStop trs3 = builder.createTransitRouteStop(tsf3, 1560, 1680);
+		trs3.setAwaitDepartureTime(true);
+
+		ArrayList<TransitRouteStop> stoplist = new ArrayList<>(3);
+		stoplist.add(trs1);
+		stoplist.add(trs2);
+		stoplist.add(trs3);
+
+		// create network route for new line
+		NetworkRoute newNetworkRoute = schedule.getTransitLines().get(Id.get("line2",TransitLine.class))
+				.getRoutes().get(Id.get("line2", TransitRoute.class)).getRoute();
+
+		// construct new route
+		TransitRoute newTransitRoute = builder.createTransitRoute(Id.create("line3", TransitRoute.class),
+				newNetworkRoute, stoplist,"pt");
+
+		// construct new line
+		TransitLine tLine = builder.createTransitLine(Id.create("line3", TransitLine.class));
+		tLine.addRoute(newTransitRoute);
+		schedule.addTransitLine(tLine);
+
+		// add departures for new line
+
+		double depTime = 6.0 * 3600 + 120;
+
+		for (int i = 0; i < 4; i++){
+			Departure dep = builder.createDeparture(Id.create(i, Departure.class), depTime);
+			dep.setVehicleId(Id.create(i+3000, Vehicle.class));
+			newTransitRoute.addDeparture(dep);
+			depTime += 1800;
+		}
+
+	}
+
+
+	public static void createNewTrainVehicles(Scenario sc){
+		Vehicles vehicles = sc.getTransitVehicles();
+		VehiclesFactory vb = vehicles.getFactory();
+
+		//create four new vehicles
+		//VehicleType vehicleType = vb.createVehicleType(Id.create("train", VehicleType.class));
+
+		for (int i = 0; i < 4; i++){
+			vehicles.addVehicle(vb.createVehicle(Id.create(3000+i, Vehicle.class), vehicles.getVehicleTypes().get(Id.get("1", VehicleType.class))));
+		}
+
+	}
 	
 }

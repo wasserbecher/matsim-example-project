@@ -1,8 +1,8 @@
 pattern	0+	5+	10+	15+	20+	25+	30+	35+	40+	45+	50+	55+	60+
 h---pt interaction	10	0	0	0	0	0	0	0	0	0	0	0	0
-pt interaction---pt interaction	0	6	0	4	4	2	4	2	2	0	0	0	0
-pt interaction---w	24	0	0	0	0	0	0	0	0	0	0	0	0
-w---h	0	0	0	0	0	0	0	0	0	0	0	0	10
-w---pt interaction	14	0	0	0	0	0	0	0	0	0	0	0	0
+pt interaction---pt interaction	0	2	4	3	3	3	1	2	0	0	0	0	2
+pt interaction---w	20	0	0	0	0	0	0	0	0	0	0	0	0
+w---h	0	0	0	0	0	0	0	0	0	0	0	0	8
+w---pt interaction	12	0	0	0	0	0	0	0	0	0	0	0	0
 
-average trip duration: 869.5731707317074 seconds = 00:14:29
+average trip duration: 974.4142857142857 seconds = 00:16:14
