@@ -2,6 +2,7 @@
 import gurobipy as gb
 from gurobipy import GRB
 import sys
+import random
 
 
 
@@ -9,6 +10,8 @@ import sys
 B = [1,2,3,4,5,6,7,8,9,10,11,12,13,14] # blocks
 E = [(1,2), (1,3),(2,4), (3,4), (4,5), (5,6), (5,7), (5,8), (6,9), (7,9),(8,9),
         (9,10),(10,11), (11, 12), (11,13), (12,14), (13,14)] # edges
+
+Layers = [[1], [2,3],[4],[5],[6,7,8],[9],[10],[11],[12,13],[14]]
 
 """
 # TODO: remove debugging data
@@ -48,7 +51,7 @@ for s in S:
         t=40
     for b in SB[s]:
         for r in R:
-            A[r, b] = t+r*2
+            A[r, b] = t+r*5
 
 t=0
 D = {} # departure times of trains for stations
@@ -61,15 +64,18 @@ for s in S:
         t=45
     for b in SB[s]:
         for r in R:
-            D[r, b] = t+r*4
+            D[r, b] = t+r*10
 
 M = {} # minimal travel time on a block b for a train r
 for r in R:
     for b in B:
-        M[r,b] = 5
+        M[r,b] = random.randint(2,7)
 
 # model
 model = gb.Model('ttp')
+
+# params
+model.setParam('Timelimit', 120)
 
 # variables
 u = model.addVars(R, B, vtype=GRB.BINARY, name='u') # use block b or not
@@ -87,8 +93,8 @@ model.setObjective(sum(y[r,b] + z[r,b] for r in R for b in AS))
 
 # constraint 1: departure time is arrival time in the next block
 for r in R:
-    for b in B[:-1]:
-        model.addConstr(d[r,b] <= sum(a[r,bb] for bb in B if (b,bb) in E), name="1 a = d")
+    for i in range(len(Layers)-1):
+        model.addConstr(sum( d[r,b] for b in Layers[i]) == sum(a[r,bb] for bb in Layers[i+1]), name="1 a = d")
 
 # constraint 2: time spent on block is atleast M_rb
 for r in R:
@@ -142,7 +148,7 @@ for rr in R2:
 
 model.optimize()
 
-if not model.status == GRB.OPTIMAL:
+if model.status == GRB.INFEASIBLE:
     model.computeIIS()
     model.write('model.ilp')
 
